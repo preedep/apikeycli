@@ -88,7 +88,8 @@ async fn generate_and_save_api_key(app_id : String,
             Ok(client) => {
                 let api_key = generate_api_key(key_size);
                 println!("api key : {}",&api_key);
-                println!("Ok");
+                println!("saving to : {}",&key_vault_url);
+
                 let secret_name = format!("{}-api-key",app_id);
                 client.set(&secret_name, api_key).await.expect("Set Failed");
                 let _secret = client.get(secret_name).await.expect("Get Failed");
